@@ -4,7 +4,9 @@ import Home from "./components/Home";
 import "./styles/app.scss"
 import {Toaster} from "react-hot-toast"
 
+
 import {BrowserRouter, Routes, Route} from "react-router-dom"
+import Orders from "./components/Orders";
 
 
 function App() {
@@ -14,7 +16,7 @@ function App() {
         <Routes>
             <Route path="/" element = {<Home/>}  />
             <Route path="/cart" element = {<Cart/>}  />
-
+           <Route path="/orders" element = {<Orders/>}/>
         </Routes>
       <Toaster />
     </BrowserRouter>

@@ -1,5 +1,7 @@
 import React from 'react'
+import toast from 'react-hot-toast';
 import {AiFillDelete} from "react-icons/ai"
+import { useNavigate} from "react-router-dom"
 
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const Cart = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
   const  {cartItems, subTotal, tax, shipping, total} = useSelector(state => state.cart)
   const increment = (id) => {
@@ -29,7 +32,15 @@ const Cart = () => {
         payload: id,
       });
       dispatch({ type: "calculatePrice" });
+
   };
+
+  const cartToOrder = () => {
+    dispatch({ type: "convert"});
+    dispatch({type: "zero"});
+   
+    toast.success("Order Placed");
+  }
 
 
     return (
@@ -60,6 +71,7 @@ const Cart = () => {
                 <h2>Shipping: ${shipping}</h2>
                 <h2>Tax: ${tax}</h2>
                 <h2>Total: ${total}</h2>
+                <button className="btn-buy" onClick={cartToOrder} >Buy Now</button>
             </aside>
 
 
