@@ -56,7 +56,7 @@ export const cartReducer = createReducer(
     const item = action.payload;
     const isItemExist = state.container.find((i) => i === item);
     if(isItemExist){
-      toast.success("You have already been rewarded!")
+      toast.success("You have already been rewarded!",{autoClose: 500});
     }
     else{
       state.container.push(item);

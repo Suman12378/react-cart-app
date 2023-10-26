@@ -2,13 +2,15 @@ import React from 'react'
 import toast from 'react-hot-toast';
 import {useDispatch, useSelector} from "react-redux"
 import { Link } from 'react-router-dom';
+//import check from './Check';
+//import ImageClassifier from "../recycle";
 
 
 
 
 const Orders = () => {
 
-  const dispatch = useDispatch();
+
 
 const  {orderItems} = useSelector(state => state.cart);
   
@@ -39,11 +41,16 @@ const  {orderItems} = useSelector(state => state.cart);
 
 const OrderItem = ({ name, price, imgSrc, qty, id }) => {
   const dispatch = useDispatch();
-  const addReward = (id) => {
+   const addReward = (id, imgSrc) => {
+   
     dispatch({type: "addPoints",
      payload: id,});
     //console.log("hello Im reward")
    // toast.success("you are rewarded");
+   //console.log("hello");
+   //check();
+    
+    toast("This product is suitable for Recycling!");
    };
   return(
 <div className="productCard">
@@ -52,7 +59,7 @@ const OrderItem = ({ name, price, imgSrc, qty, id }) => {
       <h4> {name} </h4>
       <p>${price}</p>
 
-      <button style={{marginTop:"1rem"}} onClick={()=>addReward(id)}>Advisory</button>
+      <button style={{marginTop:"1rem"}} onClick={()=>addReward(id, imgSrc)}>Advisory</button>
    
 </div> 
   );
